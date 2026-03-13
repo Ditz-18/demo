@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0f14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ditz Money Demo">
+  <meta name="description" content="Ditz Money Demo — Lihat semua fitur aplikasi keuangan pribadi">
+  <title>Ditz Money — Demo</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="https://d.top4top.io/p_3721v7lxr0.png">
+  <link rel="apple-touch-icon" href="https://d.top4top.io/p_3721v7lxr0.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="https://d.top4top.io/p_3721v7lxr0.png" alt="Ditz Money" class="logo-img">
+      <div class="logo-text">Ditz Money</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Utama</div>
+      <div class="nav-item" data-page="dashboard">
+        <div class="nav-icon"><i class="fa-solid fa-house"></i></div>
+        <span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="transaction">
+        <div class="nav-icon"><i class="fa-solid fa-plus-circle"></i></div>
+        <span>Catat Transaksi</span>
+      </div>
+      <div class="nav-item" data-page="history">
+        <div class="nav-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <span>Riwayat</span>
+      </div>
+      <div class="nav-item" data-page="report">
+        <div class="nav-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <span>Laporan</span>
+      </div>
+      <div class="nav-section-label" style="margin-top:8px">Manajemen</div>
+      <div class="nav-item" data-page="budget">
+        <div class="nav-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <span>Budget</span>
+      </div>
+      <div class="nav-item" data-page="wallet">
+        <div class="nav-icon"><i class="fa-solid fa-wallet"></i></div>
+        <span>Dompet</span>
+      </div>
+      <div class="nav-item" data-page="category">
+        <div class="nav-icon"><i class="fa-solid fa-tags"></i></div>
+        <span>Kategori</span>
+      </div>
+      <div class="nav-item" data-page="recurring">
+        <div class="nav-icon"><i class="fa-solid fa-rotate"></i></div>
+        <span>Rutin</span>
+      </div>
+      <div class="nav-item" data-page="splitbill">
+        <div class="nav-icon"><i class="fa-solid fa-scissors"></i></div>
+        <span>Split Bill</span>
+      </div>
+      <div class="nav-section-label" style="margin-top:8px">Data</div>
+      <div class="nav-item" data-page="goals">
+        <div class="nav-icon"><i class="fa-solid fa-bullseye-arrow"></i></div>
+        <span>Target</span>
+      </div>
+      <div class="nav-item" data-page="notes">
+        <div class="nav-icon"><i class="fa-solid fa-note-sticky"></i></div>
+        <span>Catatan</span>
+      </div>
+      <div class="nav-item" data-page="networth">
+        <div class="nav-icon"><i class="fa-solid fa-scale-unbalanced-flip"></i></div>
+        <span>Net Worth</span>
+      </div>
+      <div class="nav-item" data-page="installment">
+        <div class="nav-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <span>Cicilan</span>
+      </div>
+      <div class="nav-item" data-page="backup">
+        <div class="nav-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <span>Backup</span>
+      </div>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="nav-item" data-page="settings">
+        <div class="nav-icon"><i class="fa-solid fa-gear"></i></div>
+        <span>Pengaturan</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="topbar-actions">
+        <div class="topbar-wallet-badge" id="topbar-wallet-badge" onclick="App.navigate('wallet')">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Memuat...</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="page" id="page-dashboard"></div>
+      <div class="page" id="page-transaction"></div>
+      <div class="page" id="page-history"></div>
+      <div class="page" id="page-report"></div>
+      <div class="page" id="page-budget"></div>
+      <div class="page" id="page-wallet"></div>
+      <div class="page" id="page-category"></div>
+      <div class="page" id="page-recurring"></div>
+      <div class="page" id="page-splitbill"></div>
+      <div class="page" id="page-notes"></div>
+      <div class="page" id="page-goals"></div>
+      <div class="page" id="page-installment"></div>
+      <div class="page" id="page-networth"></div>
+      <div class="page" id="page-backup"></div>
+      <div class="page" id="page-settings"></div>
+      <div class="page" id="page-help"></div>
+    </div>
+  </main>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <div class="bottom-nav-item" data-page="dashboard">
+      <div class="nav-icon-wrap"><i class="fa-solid fa-house"></i></div>
+      <span>Home</span>
+    </div>
+    <div class="bottom-nav-item" data-page="history">
+      <div class="nav-icon-wrap"><i class="fa-solid fa-clock-rotate-left"></i></div>
+      <span>Riwayat</span>
+    </div>
+    <div class="bottom-nav-item" data-page="report">
+      <div class="nav-icon-wrap"><i class="fa-solid fa-chart-bar"></i></div>
+      <span>Laporan</span>
+    </div>
+    <div class="bottom-nav-item" data-page="budget">
+      <div class="nav-icon-wrap"><i class="fa-solid fa-bullseye"></i></div>
+      <span>Budget</span>
+    </div>
+    <div class="bottom-nav-item" data-page="settings">
+      <div class="nav-icon-wrap"><i class="fa-solid fa-gear"></i></div>
+      <span>Setting</span>
+    </div>
+  </div>
+</nav>
+
+<!-- FAB -->
+<div class="fab-backdrop" id="fab-backdrop" onclick="App.closeFab()"></div>
+<div class="fab-more" id="fab-more">
+  <div class="fab-item" data-page="category">
+    <i class="fa-solid fa-tags" style="color:var(--pink)"></i> Kategori
+  </div>
+  <div class="fab-item" data-page="backup">
+    <i class="fa-solid fa-cloud-arrow-up" style="color:var(--blue)"></i> Backup
+  </div>
+  <div class="fab-item" data-page="recurring">
+    <i class="fa-solid fa-rotate" style="color:var(--lime)"></i> Transaksi Rutin
+  </div>
+  <div class="fab-item" data-page="wallet">
+    <i class="fa-solid fa-wallet" style="color:var(--teal)"></i> Dompet
+  </div>
+  <div class="fab-item" data-page="notes">
+    <i class="fa-solid fa-note-sticky" style="color:var(--yellow)"></i> Catatan
+  </div>
+  <div class="fab-item" data-page="goals">
+    <i class="fa-solid fa-piggy-bank" style="color:var(--green)"></i> Target Tabungan
+  </div>
+  <div class="fab-item" data-page="networth">
+    <i class="fa-solid fa-scale-unbalanced-flip" style="color:var(--purple)"></i> Net Worth
+  </div>
+  <div class="fab-item" data-page="installment">
+    <i class="fa-solid fa-calendar-check" style="color:var(--orange)"></i> Cicilan
+  </div>
+  <div class="fab-item" data-page="splitbill">
+    <i class="fa-solid fa-scissors" style="color:var(--cyan)"></i> Split Bill
+  </div>
+  <div class="fab-item" data-page="transaction">
+    <i class="fa-solid fa-plus-circle" style="color:var(--green)"></i> Catat Transaksi
+  </div>
+</div>
+<button class="fab-main" id="fab-toggle">
+  <i class="fa-solid fa-plus" id="fab-icon"></i>
+</button>
+
+<!-- AI Chat FAB -->
+<button class="fab-ai" id="fab-ai" onclick="AIChat.toggle()">
+  <i class="fa-solid fa-robot" id="fab-ai-icon"></i>
+  <span class="fab-ai-pulse"></span>
+</button>
+
+<!-- AI Chat Panel -->
+<div class="ai-chat-panel" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="ai-avatar"><i class="fa-solid fa-robot"></i></div>
+      <div>
+        <div style="font-weight:700;font-size:14px">Ditz AI</div>
+        <div style="font-size:11px;color:var(--teal);display:flex;align-items:center;gap:4px">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block"></span>
+          Mode Demo
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button class="btn-icon" onclick="AIChat.clearHistory()">
+        <i class="fa-solid fa-trash" style="font-size:12px;color:var(--text-muted)"></i>
+      </button>
+      <button class="btn-icon" onclick="AIChat.toggle()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-chat-messages" id="ai-chat-messages"></div>
+  <div class="ai-chat-suggestions" id="ai-chat-suggestions"></div>
+  <div class="ai-chat-input-area">
+    <input type="text" id="ai-chat-input" class="ai-chat-input"
+      placeholder="Tanya sesuatu..."
+      onkeydown="if(event.key==='Enter')AIChat.send()">
+    <button class="ai-send-btn" onclick="AIChat.send()">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast-container"></div>
+
+<!-- Confirm Modal -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="confirm-dialog">
+    <div class="confirm-icon"></div>
+    <div class="confirm-title"></div>
+    <div class="confirm-msg"></div>
+    <div class="confirm-actions">
+      <button class="btn btn-ghost" onclick="Utils.closeModal('confirm-modal')">Batal</button>
+      <button class="btn btn-danger" id="confirm-ok-btn">Ya, Lanjutkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts — urutan penting! -->
+<script src="db.js"></script>
+<script src="utils.js"></script>
+<script src="dashboard.js"></script>
+<script src="transaction.js"></script>
+<script src="pages.js"></script>
+<script src="aichat.js"></script>
+<script src="app.js"></script>
+<script src="sw.js"></script>
+</body>
+</html>
